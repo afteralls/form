@@ -65,6 +65,32 @@
 </template>
 
 <script setup lang="ts">
+const title = 'Форма регистрации'
+const desc = computed(() => 'Небольшое описание для небольшого тестового задания')
+const image = '/favicon.ico'
+
+useSeoMeta({
+  description: desc.value,
+  ogTitle: title,
+  ogDescription: desc.value,
+  ogImage: image,
+  ogUrl: 'https://afteralls-form.netlify.app/',
+  twitterTitle: title,
+  twitterDescription: desc.value,
+  twitterImage: image,
+  twitterCard: 'summary'
+})
+
+useHead({
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.ico'
+    }
+  ]
+})
+
 const data: AuthData = reactive({
   public: true,
   username: '',

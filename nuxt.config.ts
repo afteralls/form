@@ -20,6 +20,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: { lang: 'ru' },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [{ name: 'theme-color', content: '#f5f5f5' }],
