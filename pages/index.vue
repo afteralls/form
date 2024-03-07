@@ -57,7 +57,7 @@
       </USpace>
     </template>
   </UForm>
-  <USpace v-else display="col" mode="center">
+  <USpace v-else display="col" mode="center" style="width: 100dvw; height: 100dvh">
     <UIcon name="icon-park:success" size="max" />
     <UText type="span" text="Прекрасно" />
     <UText gray text="Ваши данные успешно загружены!" />
