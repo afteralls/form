@@ -1,5 +1,5 @@
 <template>
-  <USpace display="row" gap="sm" style="position: relative" :class="{ disabled: disabled }">
+  <USpace display="row" gap="sm" :class="{ checkbox: true, disabled: disabled }">
     <input
       :id="name"
       type="checkbox"
@@ -7,47 +7,56 @@
       :checked="modelValue"
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
-    <USpace block="def" class="box">
-      <UIcon name="lucide:check" size="cb" />
+    <USpace block="def" class="box" mode="center">
+      <UIcon name="fluent-mdl2:skype-check" size="cb" />
     </USpace>
-    <UText v-if="label" type="label" gray :for="name" :text="label" />
+    <slot />
   </USpace>
 </template>
 
 <script setup lang="ts">
-defineProps<{ name: string; modelValue: boolean; label?: string; disabled?: boolean }>()
+defineProps<{ name: string; modelValue: boolean; disabled?: boolean }>()
 defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <style scoped lang="scss">
+.checkbox {
+  position: relative;
+  align-items: flex-start;
+}
+
 .box {
   @include ui-styles;
-  width: var(--ui-size);
   padding: 0;
+  width: var(--action-size);
+  min-width: var(--action-size);
+  height: var(--action-size);
+  background-color: var(--fg-s);
+  border-radius: toRem(5);
   position: relative;
+  transition:
+    background-color var(--tr),
+    transform var(--tr);
 
   svg {
-    position: absolute;
-    left: toRem(2);
-    bottom: toRem(-2);
     opacity: 0;
-    transition: all var(--tr);
-    transform: translateY(toRem(20));
+    color: var(--bg);
   }
 }
 
 input {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: var(--action-size);
+  height: var(--action-size);
   opacity: 0;
   z-index: 1;
   cursor: pointer;
 
   &:checked + .box {
+    background-color: var(--m);
+
     svg {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 

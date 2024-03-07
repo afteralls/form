@@ -1,14 +1,12 @@
 <template>
-  <USpace type="form" class="form">
+  <USpace block="form">
     <USpace block="def">
-      <UText type="span" :text="title" />
+      <UText type="h3" :text="title" />
     </USpace>
-    <ULine />
-    <USpace block="def">
+    <USpace block="def" class="hr">
       <slot name="body" />
     </USpace>
-    <ULine />
-    <USpace block="def">
+    <USpace block="def" class="hr actions">
       <slot name="actions" />
     </USpace>
   </USpace>
@@ -20,8 +18,11 @@ defineProps<{ title: string }>()
 </script>
 
 <style scoped lang="scss">
-.form {
-  border-radius: var(--br-rad-form);
-  // background-color: var(--fg);
+.hr {
+  border-top: toRem(1) solid var(--hr);
+}
+
+.actions {
+  padding-bottom: calc(var(--space-l) * 2);
 }
 </style>

@@ -4,7 +4,7 @@
 const props = withDefaults(
   defineProps<{
     text: string
-    type?: 'h1' | 'h2' | 'h3' | 'p' | 'small' | 'label' | 'span'
+    type?: 'h3' | 'p' | 'small' | 'span'
     for?: string
     gray?: boolean
   }>(),
@@ -21,66 +21,33 @@ const Text = () =>
   will-change: transform;
 }
 
-h1 {
-  font-size: 3rem;
-  letter-spacing: toRem(-1);
-
-  @media (max-width: $md) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: $sm) {
-    font-size: 2rem;
-  }
-
-  @media (max-width: $zf) {
-    font-size: 1.5rem;
-  }
-}
-
-h2 {
-  font-size: 2rem;
-  letter-spacing: toRem(-1);
-
-  @media (max-width: $md) {
-    font-size: 1.75rem;
-  }
-}
-
 h3 {
-  font-size: 1.4rem;
+  font-size: 1.188rem;
+  font-weight: 700;
+  line-height: 1.688rem;
+  letter-spacing: -0.0035em;
+  text-align: left;
 
   @media (max-width: $sm) {
-    font-size: 1.3rem;
-  }
-
-  @media (max-width: $zf) {
     font-size: 1rem;
   }
 }
 
 p,
 span {
+  font-weight: 500;
+  line-height: 1.188rem;
+
   @media (max-width: $mob) {
     font-size: 0.875rem;
   }
 }
 
-h1,
-h2,
-h3 {
-  line-height: 1;
-}
-
-p,
-small,
-h6 {
-  line-height: 1.2;
-}
-
-label,
 small {
-  font-size: small;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.188rem;
+  letter-spacing: -0.0015em;
 }
 
 span {

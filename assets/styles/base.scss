@@ -2,33 +2,34 @@
   /* Main Color & Shades */
   --m: #3586ff;
   --m-h: #497ada33;
+  --m-tp: #0b46bd33;
+  --red: rgba(255, 0, 0, 0.3);
 
   /* Gap Styles */
-  --space-ui: 0.625rem; // 14px
+  --space-ui: 0.625rem; // 10px
   --space: 1.063rem; // 17px
   --space-l: 1.938rem; // 31px
 
   --bg: #f5f5f5;
   --fg-m: #ffffff;
+  --fg-s: #f2f2f2;
   --hr: #d9d9d9;
   --btn-bg: var(--light-bg);
-  --opt-bg: var(--light-fg-m);
-  --opt-tip-bg: var(--light-bg);
   --br: #e6e6eb;
-  --txt-m: var(--dark-txt-m);
-  --txt-s: var(--dark-txt-s);
+  --txt-ui: #9292a0;
+  --txt-m: #000000;
+  --txt-s: #696977;
+  --txt-btn: #497ada;
 
   /* Transition Style */
   --tr: 0.5s ease;
+  --scale: scale(0.95);
 
   /* Border Radius Style */
   --br-rad-form: 0.938rem; // 15px
   --br-rad-ui: 0.688rem; // 11px
 
   /* Main UI sizes */
-  --ui-size: 2rem; // 32px
-
-  /* Header sizes */
-  --header-height: 4rem;
-  --mob-header-height: 3.438rem;
+  --ui-size: 2.5rem; // 40px
+  --action-size: 1.188rem; // 19px
 }

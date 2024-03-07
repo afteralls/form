@@ -1,24 +1,16 @@
 <template>
   <button
     :disabled="disabled || loading"
-    :class="{
-      button: mode === 'button',
-      icon: mode === 'icon',
-      link: mode === 'link',
-      min: mode === 'min',
-      tab: mode === 'tab',
-      action: state === 'action',
-      active: active
-    }"
+    :class="[mode]"
     :title="title"
     @click.prevent="$emit('trigger')"
   >
-    <USpace mode="center" style="position: relative; pointer-events: none; text-align: left">
+    <USpace mode="center" style="position: relative; pointer-events: none">
       <UIcon v-if="loading" :name="ICON_LOADING_CIRCLE" style="position: absolute" />
-      <USpace display="row" gap="bit" :style="loading ? `visibility: hidden` : null">
-        <UIcon v-if="icon" :name="icon" :size="mode === 'min' || mini ? 'sm' : 'def'" />
-        <UText v-if="title && mode !== 'icon'" type="span" :text="title" />
-      </USpace>
+      <UIcon v-if="icon" :name="icon" />
+      <div v-else :style="loading ? `visibility: hidden` : null">
+        {{ mode !== 'icon' ? title : null }}
+      </div>
     </USpace>
   </button>
 </template>
@@ -27,15 +19,12 @@
 withDefaults(
   defineProps<{
     title: string
-    mode?: 'button' | 'icon' | 'link' | 'min' | 'tab'
+    mode?: 'button' | 'icon'
     disabled?: boolean
-    state?: 'action'
-    active?: boolean
-    loading?: boolean
     icon?: string
-    mini?: boolean
+    loading?: boolean
   }>(),
-  { title: undefined, mode: 'button', icon: undefined, state: undefined }
+  { mode: 'button', icon: undefined }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()
@@ -61,115 +50,33 @@ button {
 }
 
 .button {
-  background-color: var(--fg-m);
-  border: toRem(1) solid var(--br);
-
-  &,
-  svg {
-    color: var(--txt-m);
-  }
+  background-color: var(--m-h);
+  font-size: toRem(12);
+  font-weight: 400;
+  line-height: toRem(19);
+  letter-spacing: -0.0015em;
+  text-align: left;
+  color: var(--txt-btn);
+  transition:
+    background-color var(--tr),
+    filter var(--tr),
+    transform var(--tr);
 
   &:hover,
   &:focus {
-    border: toRem(1) solid var(--m);
-  }
-
-  &.active {
-    background-color: var(--m);
-
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 var(--space-m) var(--m);
-    }
+    background-color: var(--m-tp);
   }
 }
 
 .icon {
   background-color: transparent;
   padding: 0;
-  color: var(--txt-m);
+  color: var(--txt-s);
   height: auto;
 
   &:hover,
   &:focus {
     filter: drop-shadow(0 0 toRem(5) var(--m));
-  }
-
-  &.active {
-    svg {
-      color: var(--m);
-    }
-  }
-
-  &.action {
-    svg {
-      color: var(--txt-s);
-    }
-  }
-}
-
-.link {
-  border-radius: 0;
-  background-color: transparent;
-  padding: 0;
-  border-bottom: toRem(1.2) dashed var(--txt-m);
-  padding-bottom: toRem(3);
-  transition: transform var(--tr);
-
-  .row {
-    align-items: flex-end;
-  }
-
-  &,
-  svg {
-    color: var(--txt-m);
-    height: auto !important;
-  }
-
-  &:hover,
-  &:focus {
-    border-bottom-style: solid;
-  }
-}
-
-.min {
-  border-radius: 0;
-  background-color: transparent;
-  padding: 0;
-  height: auto;
-
-  &,
-  svg {
-    color: var(--m);
-  }
-
-  &:hover,
-  &:focus {
-    filter: drop-shadow(0 0 toRem(5) var(--m));
-  }
-}
-
-.tab {
-  background-color: var(--fg-m);
-  border: toRem(1) solid var(--fg-m);
-
-  &:hover,
-  &:focus {
-    border: toRem(1) solid var(--m);
-  }
-
-  &,
-  svg {
-    color: var(--txt-m);
-  }
-
-  &.active {
-    background-color: var(--bg);
-
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 var(--space-m) var(--fg-m);
-    }
   }
 }
 </style>

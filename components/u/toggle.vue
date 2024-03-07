@@ -1,9 +1,5 @@
 <template>
-  <USpace display="row" pos="between" style="position: relative">
-    <USpace display="col" gap="bit">
-      <UText type="span" :text="label" />
-      <UText type="label" :for="name" gray :text="desc" />
-    </USpace>
+  <USpace display="row" gap="bit" class="toggle">
     <input
       :id="name"
       type="checkbox"
@@ -12,6 +8,10 @@
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
     />
     <div class="toggler"></div>
+    <USpace display="col" gap="sm">
+      <UText type="p" :text="title" />
+      <UText :for="name" gray :text="desc" />
+    </USpace>
   </USpace>
 </template>
 
@@ -19,7 +19,7 @@
 defineProps<{
   name: string
   modelValue: boolean
-  label: string
+  title: string
   desc: string
   disabled?: boolean
 }>()
@@ -27,6 +27,11 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <style scoped lang="scss">
+.toggle {
+  position: relative;
+  align-items: flex-start;
+}
+
 input {
   position: absolute;
   width: 100%;
@@ -42,30 +47,37 @@ input {
   }
 
   &:checked + .toggler::before {
-    transform: translateX(101%);
+    transform: translateX(106%);
+  }
+
+  &:checked + .toggler {
     background-color: var(--m);
   }
 }
+
+$width: toRem(39);
 
 .toggler {
   display: flex;
   align-items: center;
   position: relative;
-  height: var(--ui-size);
-  border-radius: var(--space);
-  width: calc(var(--ui-size) * 2);
-  min-width: calc(var(--ui-size) * 2);
-  background-color: var(--fg-m);
-  border: toRem(1) solid var(--br);
+  height: var(--action-size);
+  border-radius: toRem(100);
+  width: $width;
+  min-width: $width;
+  background-color: var(--fg-s);
+  transition: background-color var(--tr);
 
   &::before {
     content: '';
+    box-sizing: border-box;
     position: absolute;
-    left: -1%;
-    height: var(--ui-size);
+    left: 0;
+    height: var(--action-size);
     border-radius: 100%;
-    width: var(--ui-size);
-    background-color: var(--txt-m);
+    border: toRem(1) solid var(--br);
+    width: var(--action-size);
+    background-color: var(--bg);
     transition:
       transform var(--tr),
       box-shadow var(--tr),

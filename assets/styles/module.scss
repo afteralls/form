@@ -5,10 +5,16 @@
 /* Main UI Styles */
 @mixin ui-styles {
   font-family: 'Montserrat';
-  padding: 0 var(--space);
   height: var(--ui-size);
-  border-radius: var(--br-rad);
-  transition: filter var(--tr), border var(--tr), box-shadow var(--tr), transform var(--tr);
+  font-size: 0.875rem;
+  color: var(--txt-ui);
+  border-radius: var(--br-rad-ui);
+  padding: var(--space-ui);
+  transition:
+    filter var(--tr),
+    border var(--tr),
+    box-shadow var(--tr),
+    transform var(--tr);
 }
 
 /* Media Breakpoints */
