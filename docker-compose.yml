@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    container_name: form
+    build:
+      context: .
+      target: deploy
+    ports:
+      - 3303:3000
+    restart: always

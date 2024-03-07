@@ -1,0 +1,11 @@
+.git
+.vscode
+.nuxt
+.output
+.gitignore
+.dockerignore
+
+node_modules
+docker-compose*
+Doclerfile*
+README.md

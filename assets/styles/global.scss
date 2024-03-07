@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; // Hide highlight
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--txt-m);
+}
+
+/* Set Color when Selecting Text */
+::selection {
+  background-color: var(--m-h);
+}
+
+/* Hide Default Scrollbar Styles */
+::-webkit-scrollbar {
+  display: none;
+}
